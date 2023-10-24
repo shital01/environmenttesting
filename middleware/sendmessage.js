@@ -1,6 +1,5 @@
 const axios = require("axios");
 const config = require('config');
-const logger = require('../startup/logging');
 
 
 async function sendmessage(send_to, message,TemplateId) {
@@ -32,7 +31,6 @@ const requestURL = options.url + '?method=' + options.data.method +
     '&password=' + options.data.password +
     '&format=' + options.data.format;
 console.log(requestURL);
-  logger.info('Final URL:'+ requestURL);
 
 
 const response = await axios(options);
