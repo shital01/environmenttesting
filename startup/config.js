@@ -1,5 +1,4 @@
 const config = require('config');
-const logger = require('../startup/logging');
 module.exports =function(){
 	if(!config.get('jwtPrivateKey')){
 	//console.log("FATAL ERROR jwt private key not defined");
@@ -9,5 +8,5 @@ module.exports =function(){
 }
 
 //configuration 
-logger.info('app name: '+ config.get('name'));
+console.log('app name: '+ config.get('name'));
 }
