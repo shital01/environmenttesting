@@ -5,23 +5,6 @@ const app = express();
 const winston = require('winston');
 
 require('./startup/config')();
-const logger = require('./startup/logging');
-
-if(app.get('env')=== 'production'){
-require('./startup/prod')(app);
-app.use((req, res, next) => {
-  const start = Date.now();
-  res.on('finish', () => {
-    const responseTime = Date.now() - start;
-    const userAgent = req.headers['user-agent'] || 'Unknown';
-    const authToken = req.headers['x-auth-token'] || 'N/A';//maybe avoid and do this for erroror to seelog of unwanted request whomaking
-    logger.info(`${req.ip} - ${userAgent} - Auth Token: ${authToken} - ${req.method} ${req.originalUrl} - ${res.statusCode} - ${responseTime}ms`);
-    //logger.info(`${req.ip} - ${req.method} ${req.originalUrl} - ${res.statusCode} - ${responseTime}ms`);
-  });
-  next();
-});
-}
-
 
 process.on('unhandledRejections',(ex) =>{
 	//console.log(ex)
@@ -52,5 +35,5 @@ app.use(function(req,res,next){
 */
 
 const port = process.env.PORT||3000
-const server = app.listen(port,()=>logger.info(`listening to port ${port}...`));
+const server = app.listen(port,()=>console.log(`listening to port ${port}...`));
 module.exports = server
