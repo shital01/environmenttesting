@@ -22,12 +22,12 @@ router.get('/upload',async(req,res)=>{
     Key: key,
     ContentType: 'image/jpeg', // Specify the content type
   };
-  const initiateResponse = await s3.createMultipartUpload(initiateParams);
+  const initiateResponse = await s3.createMultipartUpload(initiateParams).promise();
   const uploadId = initiateResponse.UploadId;
   const presignedUrls = [];
   for (let partNumber = 1; partNumber <= partCount; partNumber++) {
     const uploadPartParams = {
-      Bucket: bucketName,
+      Bucket: config.get('bucketName'),
       Key: key,
       UploadId: uploadId,
       PartNumber: partNumber,
