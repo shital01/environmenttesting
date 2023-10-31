@@ -1,5 +1,16 @@
+const express = require('express');
+const router = express.Router();
 const AWS = require('aws-sdk');
-const s3 = new AWS.S3();
+require('aws-sdk/lib/maintenance_mode_message').suppress = true;
+
+const uuid = require('uuid');
+const config = require('config');
+
+const s3 = new AWS.S3({
+  signatureVersion:'v4',
+  region: 'ap-south-1'
+});
+
 
 router.get('/upload',async(req,res)=>{
     const dummyuserid="123qwe13";
