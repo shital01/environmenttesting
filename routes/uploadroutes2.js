@@ -35,7 +35,7 @@ router.get('/upload',async(req,res)=>{
     const presignedUrl = s3.getSignedUrl('uploadPart', uploadPartParams);
     presignedUrls.push(presignedUrl);
   }
-  return presignedUrls;
+  res.send(presignedUrls);
   })
 module.exports = router;
 
