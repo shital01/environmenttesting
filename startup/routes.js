@@ -2,6 +2,7 @@ const express = require('express');
 
 const khatas = require('../routes/khatas');
 const uploadroutes = require('../routes/uploadroutes');
+const uploadroutes2 = require('../routes/uploadroutes2');
 const sendsms = require('../routes/sendsms');
 
 const helmet = require('helmet');
@@ -15,6 +16,6 @@ module.exports = function(app){
 	app.use('/api/sms',sendsms);
 	app.use('/api/khatas',khatas);
 	app.use('/api/uploadurlrequest',uploadroutes);
-
+	app.use('/api/multiuploadurlrequest',uploadroutes2);
 	app.use(error);
 }
