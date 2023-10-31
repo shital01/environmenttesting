@@ -14,7 +14,7 @@ const s3 = new AWS.S3({
 
 router.get('/upload',async(req,res)=>{
     const dummyuserid="123qwe13";
-    const partNumber = 5;
+    const partCount = 5;
     const key = `${dummyuserid}/${uuid.v1()}.jpeg`;
     // Initiate the multipart upload
   const initiateParams = {
