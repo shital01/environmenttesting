@@ -33,6 +33,13 @@ app.use(function(req,res,next){
 	next();
 });
 */
+// Define a health check route
+app.get('/health', (req, res) => {
+  // You can perform custom health checks here
+  // For a basic health check, you can just send a success response
+  res.status(200).send('Health check passed');
+});
+
 
 const port = process.env.PORT||3000
 const server = app.listen(port,()=>console.log(`listening to port ${port}...`));
